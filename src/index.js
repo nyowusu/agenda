@@ -3,13 +3,8 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./component/Todo.container";
 import * as serviceWorker from "./serviceWorker";
-import { createStore, combineReducers } from "redux";
-import { todosReducer, currentViewReducer } from "./reducer";
 import { Provider } from "react-redux";
-
-const reducers = combineReducers({ todos: todosReducer, currentView: currentViewReducer });
-
-const store = createStore(reducers);
+import store from "./store";
 
 ReactDOM.render(
   <Provider store={store}>

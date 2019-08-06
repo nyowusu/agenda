@@ -1,39 +1,44 @@
-const defaultState = {
-  todos: [
-    { todo: "Learn JavaScript", completed: false },
-    { todo: "Learn React", completed: false },
-    { todo: "Leave Teaching", completed: false },
-    { todo: "go to Africa", completed: false }
-  ],
-  currentView: "All"
-};
+import { handleActions, handleAction } from "redux-actions";
+import { addTodo, removeTodo, toggleTodo, updateView } from "./actions";
 
-export function todosReducer(state = defaultState.todos, action) {
-  const todos = state;
-
-  switch (action.type) {
-    case "ADD":
-      return [...todos, { todo: action.item, completed: false }];
-
-    case "REMOVE":
-      return [...todos.slice(0, action.index), ...todos.slice(action.index + 1)];
-
-    case "TOGGLE":
-      console.log(action);
-      let currentTodo = todos[action.index];
+export const todosReducer = handleActions(
+  {
+    [addTodo]: (state, { payload }) => [...state, { todo: payload, completed: false }],
+    [removeTodo]: (state, { payload }) => [...state.slice(0, payload), ...state.slice(payload + 1)],
+    [toggleTodo]: (state, { payload }) => {
+      let currentTodo = state[payload];
       currentTodo.completed = !currentTodo.completed;
-      return [...todos.slice(0, action.index), { ...currentTodo }, ...todos.slice(action.index + 1)];
+      return [...state.slice(0, payload), { ...currentTodo }, ...state.slice(payload + 1)];
+    }
+  },
+  []
+);
+// export function todosReducer(state = [], action) {
+//   switch (action.type) {
+//     case "ADD":
+//       console.log(action);
+//       return [...state, { todo: action.item, completed: false }];
 
-    default:
-      return state;
-  }
-}
+//     case "REMOVE":
+//       return [...state.slice(0, action.index), ...state.slice(action.index + 1)];
 
-export function currentViewReducer(state = defaultState.currentView, action) {
-  switch (action.type) {
-    case "UPDATEVIEW":
-      return action.currentView;
-    default:
-      return state;
-  }
-}
+//     case "TOGGLE":
+//       console.log(action);
+//       let currentTodo = state[action.index];
+//       currentTodo.completed = !currentTodo.completed;
+//       return [...state.slice(0, action.index), { ...currentTodo }, ...state.slice(action.index + 1)];
+
+//     default:
+//       return state;
+//   }
+// }
+
+export const currentViewReducer = handleAction(updateView, (state, { payload }) => payload, "All");
+// export function currentViewReducer(state = "All", action) {
+//   switch (action.type) {
+//     case "UPDATEVIEW":
+//       return action.currentView;
+//     default:
+//       return state;
+//   }
+// }

@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import App from "../App";
+import { removeTodo, updateView, toggleTodo, myAsyncFetchUser, addTodo } from "../actions";
 
 const mapStateToProps = state => {
   return { todoList: state.todos, currentView: state.currentView };
@@ -18,10 +19,11 @@ const mapStateToProps = state => {
  * as functions
  */
 const mapDistpatchToProps = dispatch => ({
-  addTodo: todo => dispatch({ type: "ADD", item: todo }),
-  removeTodo: index => dispatch({ type: "REMOVE", index }),
-  toggleTodo: index => dispatch({ type: "TOGGLE", index }),
-  currentViewFn: currentView => dispatch({ type: "UPDATEVIEW", currentView })
+  addTodo: todo => dispatch(addTodo(todo)),
+  // addTodo: id => dispatch(myAsyncFetchUser(id)),
+  removeTodo: index => dispatch(removeTodo(index)),
+  toggleTodo: index => dispatch(toggleTodo(index)),
+  updateView: currentView => dispatch(updateView(currentView))
 });
 
 export default connect(
