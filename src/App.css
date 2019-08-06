@@ -11,12 +11,7 @@ input {
 
 .App {
   text-align: center;
-  background-image: linear-gradient(
-    to bottom right,
-    #263238,
-    #33484c,
-    navajowhite
-  );
+  background-image: linear-gradient(to bottom right, #263238, #33484c, navajowhite);
   background-size: cover;
   width: 100vw;
   height: 100vh;
@@ -75,15 +70,17 @@ input {
 
 .todo-input {
   display: flex;
+  width: 90%;
   justify-content: space-between;
 }
 
 .todo-input > input {
-  font-size: 1.25em;
+  font-size: 0.8em;
 }
 
 .todo-input > button {
   font-weight: bold;
+  font-size: 0.6em;
 }
 
 .todo-list {
