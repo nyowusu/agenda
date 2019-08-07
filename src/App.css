@@ -70,7 +70,7 @@ input {
 
 .todo-input {
   display: flex;
-  width: 90%;
+  flex-direction: column;
   justify-content: space-between;
 }
 
@@ -80,7 +80,6 @@ input {
 
 .todo-input > button {
   font-weight: bold;
-  font-size: 0.6em;
 }
 
 .todo-list {
@@ -111,6 +110,22 @@ input {
   width: 90%;
   text-align: left;
   border-radius: 0.2em;
+}
+
+button {
+  border-radius: 0.3em;
+}
+
+@media only screen and (min-width: 600px) {
+  .todo-input {
+    flex-direction: row;
+  }
+  .todo-input > input {
+    width: 75%;
+  }
+  .todo-input > button {
+    width: 22%;
+  }
 }
 
 @media only screen and (min-width: 730px) {
